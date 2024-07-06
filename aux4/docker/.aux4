@@ -1,0 +1,55 @@
+{
+  "package": {
+    "owner": "aux4",
+    "name": "docker",
+    "version": "1.0.0"
+  },
+  "profiles": [
+    {
+      "name": "aux4",
+      "commands": [
+        {
+          "name": "docker",
+          "execute": [
+            "profile:docker"
+          ],
+          "help": {
+            "text": "manage docker containers"
+          }
+        }
+      ]
+    },
+    {
+      "name": "docker",
+      "commands": [
+        {
+          "name": "run",
+          "execute": [
+            "alias:docker run --rm -v $(pwd)/${hostVolume}:/home/aux4/${volume} -it aux4/aux4 $command"
+          ],
+          "help": {
+            "text": "run aux4 in a docker container. It uses the current folder as the volume by default.",
+            "variables": [
+              {
+                "name": "command",
+                "text": "the aux4 command to run",
+                "default": "",
+                "arg": true
+              },
+              {
+                "name": "hostVolume",
+                "text": "the relative path to the local volume",
+                "default": "."
+              },
+              {
+                "name": "volume",
+                "text": "the relative path where the file or directory are mounted in the container",
+                "default": "."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
