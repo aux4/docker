@@ -1,9 +1,12 @@
 {
-  "package": {
-    "owner": "aux4",
-    "name": "docker",
-    "version": "1.0.0"
-  },
+  "scope": "aux4",
+  "name": "docker",
+  "version": "1.0.0",
+  "description": "aux4 docker integration",
+  "tags": [
+    "aux4",
+    "docker"
+  ],
   "profiles": [
     {
       "name": "aux4",
