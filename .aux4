@@ -1,8 +1,12 @@
 {
   "scope": "aux4",
   "name": "docker",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "aux4 docker integration",
+  "license": "Apache-2.0",
+  "dependencies": [
+    "aux4/aux4"
+  ],
   "tags": [
     "aux4",
     "docker"
