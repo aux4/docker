@@ -17,7 +17,7 @@ This is a tool to run aux4 on Docker.
             "echo 'Hello, World!'"
           ],
           "help": {
-            "text": "say hello"
+            "text": "Say hello"
           }
         }
       ]
