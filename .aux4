@@ -110,7 +110,7 @@
         {
           "name": "aux4",
           "execute": [
-            "docker build -f ${packageDir}/images/aux4/Dockerfile param(tag*) --build-arg base=${base} --build-arg version=${version} --build-arg systemPackageManager=${systemPackageManager} --build-arg systemPackageManagerUpdate=${systemPackageManagerUpdate} --build-arg systemPackageManagerInstall=${systemPackageManagerInstall} --build-arg systemPackages=${systemPackages} --build-arg packages=${packages} ${dir}"
+            "docker build -f ${packageDir}/images/aux4/Dockerfile param(tag**) --build-arg base=${base} --build-arg version=${version} --build-arg systemPackageManager=${systemPackageManager} --build-arg systemPackageManagerUpdate=${systemPackageManagerUpdate} --build-arg systemPackageManagerInstall=${systemPackageManagerInstall} --build-arg systemPackages=${systemPackages} --build-arg packages=${packages} ${dir}"
           ],
           "help": {
             "text": "Build aux4 docker image",
@@ -166,7 +166,7 @@
         {
           "name": "test",
           "execute": [
-            "docker build -f ${packageDir}/images/test/Dockerfile param(tag*) --build-arg base=${base} --build-arg systemPackageManager=${systemPackageManager} --build-arg systemPackageManagerUpdate=${systemPackageManagerUpdate} --build-arg systemPackageManagerInstall=${systemPackageManagerInstall} --build-arg systemPackages=${systemPackages} --build-arg packages=${packages} --build-arg scope=${scope} --build-arg name=${name} --build-arg test=${test} ${dir}"
+            "docker build -f ${packageDir}/images/test/Dockerfile param(tag**) --build-arg base=${base} --build-arg systemPackageManager=${systemPackageManager} --build-arg systemPackageManagerUpdate=${systemPackageManagerUpdate} --build-arg systemPackageManagerInstall=${systemPackageManagerInstall} --build-arg systemPackages=${systemPackages} --build-arg packages=${packages} --build-arg scope=${scope} --build-arg name=${name} --build-arg test=${test} ${dir}"
           ],
           "help": {
             "text": "Build aux4/test docker image",
