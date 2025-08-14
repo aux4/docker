@@ -1,0 +1,235 @@
+{
+  "scope": "aux4",
+  "name": "docker",
+  "version": "1.1.0",
+  "description": "aux4 docker integration",
+  "license": "Apache-2.0",
+  "dependencies": [
+    "aux4/aux4"
+  ],
+  "tags": [
+    "aux4",
+    "docker"
+  ],
+  "profiles": [
+    {
+      "name": "aux4",
+      "commands": [
+        {
+          "name": "docker",
+          "execute": [
+            "profile:docker"
+          ],
+          "help": {
+            "text": "Manage aux4 docker containers"
+          }
+        }
+      ]
+    },
+    {
+      "name": "docker",
+      "commands": [
+        {
+          "name": "run",
+          "execute": [
+            "docker run --rm -v $(pwd)/${hostVolume}:/home/aux4/${volume} -i $image $command"
+          ],
+          "help": {
+            "text": "Run aux4 in a docker container. It uses the current folder as the volume by default.",
+            "variables": [
+              {
+                "name": "image",
+                "text": "The name of the image to run",
+                "default": "aux4/aux4"
+              },
+              {
+                "name": "command",
+                "text": "The aux4 command to run",
+                "default": "",
+                "arg": true
+              },
+              {
+                "name": "hostVolume",
+                "text": "The relative path to the local volume",
+                "default": "."
+              },
+              {
+                "name": "volume",
+                "text": "The relative path where the file or directory are mounted in the container",
+                "default": "."
+              }
+            ]
+          }
+        },
+        {
+          "name": "test",
+          "execute": [
+            "docker run --rm -v $(pwd)/${aux4}:/home/aux4/.aux4 -v $(pwd)/${test}:/home/aux4/test -i $image $command"
+          ],
+          "help": {
+            "text": "Run aux4/test in a docker container.",
+            "variables": [
+              {
+                "name": "image",
+                "text": "The name of the image to run",
+                "default": "aux4/test"
+              },
+              {
+                "name": "command",
+                "text": "The aux4 test command to run",
+                "default": "",
+                "arg": true
+              },
+              {
+                "name": "aux4",
+                "text": "The relative path to the aux4 file",
+                "default": ".aux4"
+              },
+              {
+                "name": "test",
+                "text": "The relative path to the test folder",
+                "default": "test"
+              }
+            ]
+          }
+        },
+        {
+          "name": "build",
+          "execute": [
+            "profile:aux4:docker:build"
+          ],
+          "help": {
+            "text": "Build aux4 docker image"
+          }
+        }
+      ]
+    },
+    {
+      "name": "aux4:docker:build",
+      "commands": [
+        {
+          "name": "aux4",
+          "execute": [
+            "docker build -f ${packageDir}/images/aux4/Dockerfile param(tag**) --build-arg base=${base} --build-arg version=${version} --build-arg systemPackageManager=${systemPackageManager} --build-arg systemPackageManagerUpdate=${systemPackageManagerUpdate} --build-arg systemPackageManagerInstall=${systemPackageManagerInstall} --build-arg systemPackages=${systemPackages} --build-arg packages=${packages} ${dir}"
+          ],
+          "help": {
+            "text": "Build aux4 docker image",
+            "variables": [
+              {
+                "name": "tag",
+                "text": "The tag to use for the image",
+                "multiple": true
+              },
+              {
+                "name": "base",
+                "text": "The base image to use",
+                "default": "ubuntu"
+              },
+              {
+                "name": "version",
+                "text": "The version of aux4 to install",
+                "default": ""
+              },
+              {
+                "name": "systemPackageManager",
+                "text": "The system package manager to use",
+                "default": "apt"
+              },
+              {
+                "name": "systemPackageManagerUpdate",
+                "text": "The command to update the system package manager",
+                "default": "update"
+              },
+              {
+                "name": "systemPackageManagerInstall",
+                "text": "The command to install the system package manager",
+                "default": "install"
+              },
+              {
+                "name": "systemPackages",
+                "text": "The system packages to install, separated by commas",
+                "default": ""
+              },
+              {
+                "name": "packages",
+                "text": "The packages to install, separated by commas",
+                "default": ""
+              },
+              {
+                "name": "dir",
+                "text": "The directory to build the image from",
+                "default": "."
+              }
+            ]
+          }
+        },
+        {
+          "name": "test",
+          "execute": [
+            "docker build -f ${packageDir}/images/test/Dockerfile param(tag**) --build-arg base=${base} --build-arg systemPackageManager=${systemPackageManager} --build-arg systemPackageManagerUpdate=${systemPackageManagerUpdate} --build-arg systemPackageManagerInstall=${systemPackageManagerInstall} --build-arg systemPackages=${systemPackages} --build-arg packages=${packages} --build-arg scope=${scope} --build-arg name=${name} --build-arg test=${test} ${dir}"
+          ],
+          "help": {
+            "text": "Build aux4/test docker image",
+            "variables": [
+              {
+                "name": "tag",
+                "text": "The tag to use for the image",
+                "multiple": true
+              },
+              {
+                "name": "base",
+                "text": "The base image to use",
+                "default": "aux4/aux4"
+              },
+              {
+                "name": "systemPackageManager",
+                "text": "The system package manager to use",
+                "default": "apt"
+              },
+              {
+                "name": "systemPackageManagerUpdate",
+                "text": "The command to update the system package manager",
+                "default": "update"
+              },
+              {
+                "name": "systemPackageManagerInstall",
+                "text": "The command to install the system package manager",
+                "default": "install"
+              },
+              {
+                "name": "systemPackages",
+                "text": "The system packages to install, separated by commas",
+                "default": ""
+              },
+              {
+                "name": "packages",
+                "text": "The packages to install, separated by commas",
+                "default": ""
+              },
+              {
+                "name": "test",
+                "text": "The path to the test folder",
+                "default": ""
+              },
+              {
+                "name": "scope",
+                "text": "The scope of the package",
+                "default": ""
+              },
+              {
+                "name": "name",
+                "text": "The name of the package",
+                "default": ""
+              },
+              {
+                "name": "dir",
+                "text": "The directory to build the image from",
+                "default": "."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
