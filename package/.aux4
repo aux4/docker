@@ -32,7 +32,7 @@
         {
           "name": "run",
           "execute": [
-            "docker run --rm -v $(pwd)/${hostVolume}:/home/aux4/${volume} -i $image $command"
+            "stdin:docker run --rm -v $(pwd)/${hostVolume}:/home/aux4/workspace/${volume} -i $image $command"
           ],
           "help": {
             "text": "Run aux4 in a docker container. It uses the current folder as the volume by default.",
@@ -64,7 +64,7 @@
         {
           "name": "test",
           "execute": [
-            "docker run --rm -v $(pwd)/${aux4}:/home/aux4/.aux4 -v $(pwd)/${test}:/home/aux4/test -i $image $command"
+            "docker run --rm -v $(pwd)/${hostVolume}:/home/aux4/workspace/${volume} -i $image $command"
           ],
           "help": {
             "text": "Run aux4/test in a docker container.",
@@ -81,14 +81,14 @@
                 "arg": true
               },
               {
-                "name": "aux4",
-                "text": "The relative path to the aux4 file",
-                "default": ".aux4"
+                "name": "hostVolume",
+                "text": "The relative path to the local volume",
+                "default": "."
               },
               {
-                "name": "test",
-                "text": "The relative path to the test folder",
-                "default": "test"
+                "name": "volume",
+                "text": "The relative path where the file or directory are mounted in the container",
+                "default": "."
               }
             ]
           }
