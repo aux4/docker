@@ -30,6 +30,7 @@ ENV PATH="/home/aux4/.aux4.config/packages/aux4/aux4:${PATH}"
 
 RUN curl https://pkger.aux4.sh | sh
 RUN aux4 aux4 pkger install aux4/system-installer-${systemPackageManager}
+RUN aux4 aux4 pkger install aux4/config
 
 ARG packages=""
 RUN if [[ -n "${packages}" ]]; then \

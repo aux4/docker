@@ -39,6 +39,7 @@ RUN if [[ -n "${packages}" ]]; then \
     ; fi
 
 RUN aux4 aux4 pkger install aux4/system-installer-npm
+RUN aux4 aux4 pkger install aux4/config
 RUN aux4 aux4 pkger install aux4/test
 
 RUN if [[ "${package}" != "-" ]]; then \
