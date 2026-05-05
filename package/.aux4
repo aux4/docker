@@ -228,6 +228,52 @@
               }
             ]
           }
+        },
+        {
+          "name": "lambda",
+          "execute": [
+            "docker build -f ${packageDir}/images/lambda/Dockerfile param(tag**) --build-arg base=${base} --build-arg packages=${packages} --build-arg mode=${mode} --build-arg command=${command} ${dir}"
+          ],
+          "help": {
+            "text": "Build aux4/aws-lambda docker image",
+            "variables": [
+              {
+                "name": "tag",
+                "text": "The tag to use for the image",
+                "multiple": true
+              },
+              {
+                "name": "base",
+                "text": "The base image to use",
+                "default": "aux4/aws-lambda"
+              },
+              {
+                "name": "mode",
+                "text": "The Lambda execution mode",
+                "default": "",
+                "options": [
+                  "RAW",
+                  "HTTP",
+                  "STEP_FUNCTIONS"
+                ]
+              },
+              {
+                "name": "packages",
+                "text": "The aux4 packages to install, separated by commas",
+                "default": ""
+              },
+              {
+                "name": "command",
+                "text": "The Lambda command to execute",
+                "arg": true
+              },
+              {
+                "name": "dir",
+                "text": "The directory to build the image from",
+                "default": "."
+              }
+            ]
+          }
         }
       ]
     }
