@@ -16,8 +16,9 @@ COPY ${aux4}* ${LAMBDA_TASK_ROOT}/.aux4
 ARG mode=""
 ENV AUX4_LAMBDA_MODE=${mode}
 
-RUN chown -R aux4:aux4 /var/task
-USER aux4
+RUN if getent passwd aux4 > /dev/null 2>&1; then \
+      chown -R aux4:aux4 /var/task; \
+    fi
 
 ARG command=""
-CMD ${command}
+ENV AUX4_LAMBDA_COMMAND="${command}"
