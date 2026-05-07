@@ -1,32 +1,16 @@
-# docker
-This is a tool to run aux4 on Docker.
+# aux4/docker
+
+Run aux4 commands inside a Docker container. Useful for running aux4 in isolated environments or deploying aux4-based services.
+
+## Installation
+
+```bash
+aux4 aux4 pkger install aux4/docker
+```
 
 ## Usage
 
-.aux4
-
-```json
-{
-  "profiles": [
-    {
-      "name": "main",
-      "commands": [
-        {
-          "name": "hello",
-          "execute": [
-            "echo 'Hello, World!'"
-          ],
-          "help": {
-            "text": "Say hello"
-          }
-        }
-      ]
-    }
-  ]
-}
-```
-
-To run the command `hello` on Docker, use the following command:
+Given a `.aux4` file with a `hello` command, run it inside Docker:
 
 ```bash
 > aux4 aux4 docker run hello
@@ -35,4 +19,4 @@ To run the command `hello` on Docker, use the following command:
 Hello, World!
 ```
 
-Check the command [aux4 aux4 docker](./commands/aux4/docker) for more information.
+For more details, see [aux4 aux4 docker](./commands/aux4/docker).
