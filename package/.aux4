@@ -254,6 +254,7 @@
                 "options": [
                   "RAW",
                   "HTTP",
+                  "PROXY",
                   "STEP_FUNCTIONS"
                 ]
               },
